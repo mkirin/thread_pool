@@ -1,6 +1,9 @@
 /***************************************************
- *                                    
- *            C语言读取配置文件                   
+ * filename:readConfig.h
+ * author:mkirin
+ * e-mail:lingfengtengfei@163.com
+ * description: reading the thread config file's header file
+ *           读取配置文件                   
  *                                                
  * 1、 通过 char *GetParamValue(char *cpConfFile, 
  *			        char *cpParam, char *cpValue) 
