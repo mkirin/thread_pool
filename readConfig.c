@@ -1,7 +1,29 @@
-
-
+/***************************************************
+ * filename:readConfig.c
+ * author:mkirin
+ * e-mail:lingfengtengfei@163.com
+ * description: reading the thread config file
+ *           读取配置文件                   
+ *                                                
+ * 1、 通过 char *GetParamValue(char *cpConfFile, 
+ *			        char *cpParam, char *cpValue) 
+ *     函数获取指定配置文件中的指定参数的值，保存 
+ *     在cpValue中                                
+ * 2、 配置文件风格说明：                         
+ *     (1) 自动忽略掉每行开头的空格               
+ *     (2) 以 # 开头的行是注释行                  
+ *     (3) 不能以 = 开头                          
+ *     (4) 支持行末注释                           
+***************************************************/
 #include "readConfig.h"
-/*获取指定文件中最长的行的长度*/
+
+
+/* function name: GetMaxLineLen
+ * function parameter :
+ * 	cpFileName: the thread pool config file's full path (with filename)
+ * function description： to get the thread pool config file's size of the max line(获取指定文件中最长的行的长度)
+ * returned value： the size of max line  
+ */
 static unsigned long GetMaxLineLen(char *cpFileName)
 {
 	FILE *fpFile = NULL;
@@ -46,7 +68,13 @@ static unsigned long GetMaxLineLen(char *cpFileName)
 	return ulMaxLineLen;
 }
 
-/*去掉字符串开头的空白字符，并返回指针*/
+
+/* function name: TrimLeft
+ * function parameter :
+ * 	cpString: any strings
+ * function description： remove the string at the beginning of the blank character(去掉字符串开头的空白字符)
+ * returned value： the pointer to the string  
+ */
 static char *TrimLeft(char *cpString)
 {
 	char *cpRet = NULL;
@@ -67,7 +95,13 @@ static char *TrimLeft(char *cpString)
 	return cpRet;
 }
 
-/*去掉字符串末尾的空白字符*/
+
+/* function name: TrimRight
+ * function parameter :
+ * 	cpString: any strings
+ * function description： remove the string at the end of the blank character(去掉字符串末尾的空白字符)
+ * returned value： the pointer to the string  
+ */
 static void TrimRight(char *cpString)
 {
 	unsigned long ulStrLen = 0;
@@ -88,7 +122,14 @@ static void TrimRight(char *cpString)
 	cpString[ulStrLen] = '\0';
 }
 
-/*去掉字符串开头和末尾的空白字符*/
+
+/* function name: TrimStr
+ * function parameter :
+ * 	cpString: any strings
+ * function description： remove the string at the beginning of the blank character 
+ *      and remove the string at the end of the blank character(去掉字符串开头和末尾的空白字符)
+ * returned value： the pointer to the string  
+ */
 static char *TrimStr(char *cpString)
 {
 	char *cpRet = NULL;
@@ -99,7 +140,16 @@ static char *TrimStr(char *cpString)
 	return cpRet;
 }
 
-/*从给定行字符串中解析出指定参数名的参数值*/
+
+/* function name: ParseLine
+ * function parameter :
+ * 	cpLine: any strings of any lines
+ *	cpParam: The specified parameter name
+ *	cpValue：The specified parameter value
+ * function description： From the value of parameter specifies the parameter name string in a given string line
+ 	（从给定行字符串中解析出指定参数名的参数值)
+ * returned value： the pointer to the specified parameter value  
+ */
 static char *ParseLine(char *cpLine, char *cpParam, char *cpValue)
 {
 	char *cpTmp = NULL;
@@ -156,7 +206,18 @@ static char *ParseLine(char *cpLine, char *cpParam, char *cpValue)
 	
 	return cpValue;
 }
+
+
 /*从指定配置文件中获取指定参数名的参数值*/
+/* function name: GetParamValue
+ * function parameter :
+ * 	cpConfFile: the config file's full path (with filename)
+ *	cpParam: The specified parameter name
+ *	cpValue：The specified parameter value
+ * function description： From the value of parameter specifies the parameter name string in a given config file
+ 	（从指定配置文件中获取指定参数名的参数值)
+ * returned value： the pointer to the specified parameter value  
+ */
 char *GetParamValue(char *cpConfFile, char *cpParam, char *cpValue)
 {
 	FILE *fpConf = NULL;
@@ -231,6 +292,10 @@ char *GetParamValue(char *cpConfFile, char *cpParam, char *cpValue)
 	
 	return cpRet;
 }
+/*
+following just a test……
+
+*/
 /*
 int				g_def_thread_num = 0;
 
