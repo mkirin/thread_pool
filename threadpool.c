@@ -52,6 +52,7 @@ void conf_init()
 	g_thread_worker_low_ratio = get_config_value(THREAD_WORKER_LOW_RATIO);
 
 }
+
 /**	函数名：	pool_init 
   * 功能描述：	初始化线程池
   *	参数列表：	max_thread_num :输入要建的线程池的线程最大数目
@@ -307,8 +308,7 @@ void pool_add_thread(int thread_num)
 }
 
 /**	函数名：	pool_revoke_thread
-
-  * 功能描述：	从线程池线程中撤销线程
+  *     功能描述：	从线程池线程中撤销线程
   *	参数列表：	thread_num:要撤销的线程数目
   *	返回值：	无
   */
@@ -327,6 +327,7 @@ void pool_revoke_thread(int thread_num)
 	pthread_cond_broadcast(&(g_pool->queue_ready));
 
 }
+
 void * thread_manage(void *arg)
 {
 	int optvalue;
@@ -381,7 +382,7 @@ void * thread_manage(void *arg)
 
 
 /**	函数名：	pool_destroy 
-  * 功能描述：	销毁线程池
+  *     功能描述：	销毁线程池
   *	参数列表：	无
   *	返回值：	成功返回0,失败返回-1
   */
