@@ -2,6 +2,7 @@
  * filename:thread_pool.c
  * author:mkirin
  * e-mail:lingfengtengfei@163.com
+ * data:2013-5-18
  * description:the major implement of the thread pool                          
  ****************************************************/
 
@@ -113,7 +114,9 @@ void pool_init(int max_thread_num)
 	pthread_attr_destroy(&attr);
 
 }
-
+/*
+ 线程取消函数
+*/
 void thread_revoke_init()
 {
 	g_thread_revoke = (thread_revoke *)malloc(sizeof(thread_revoke));
