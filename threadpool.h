@@ -1,4 +1,3 @@
-
 /***************************************************
  * filename:thread_pool.h
  * author:mkirin
@@ -140,3 +139,6 @@ extern int 				g_thread_worker_high_ratio;
 extern int 				g_thread_worker_low_ratio;	
 
 #endif
+
+
+//fang
